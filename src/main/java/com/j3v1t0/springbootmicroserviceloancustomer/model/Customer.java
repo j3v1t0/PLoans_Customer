@@ -18,9 +18,13 @@ import java.util.List;
 public class Customer {
 
     @Id
-    private String uuid;
+    private String customerUuid;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "customerReferenceUuid")
+    private Customer_Reference customerReference;
     @Column(name = "customer_name", nullable = false, length = 100)
-    private String customer_name;
+    private String customerName;
     @Column(name = "customer_lastname", nullable = false, length = 100)
     private String customerLastname;
     @Enumerated(EnumType.STRING)
@@ -35,13 +39,15 @@ public class Customer {
     @Column(name = "civil_status", nullable = false, length = 15)
     private CivilStatus civilStatus;
     @OneToMany(targetEntity = Phone.class,cascade = CascadeType.ALL)
-    @JoinColumn(name ="uuid_customer",referencedColumnName = "uuid")
+    @JoinColumn(name ="customer_uuid",referencedColumnName = "customerUuid")
     private List<Phone> phoneList;
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "uuid_residencecustomer")
-    private ResidenceDetails residenceDetails;
+    @OneToMany(targetEntity = ResidenceDetails.class,cascade = CascadeType.ALL)
+    @JoinColumn(name ="customer_uuid",referencedColumnName = "customerUuid")
+    private List<ResidenceDetails> residenceDetails;
 
-    @Column(name = "fecha_creacion", nullable = false)
-    private LocalDateTime fechaCreacion;
-
+    @Column(name = "date_created", nullable = false)
+    private LocalDateTime dateCreated;
+    @Enumerated(EnumType.STRING)
+    @Column(name = "customer_status", nullable = false, length = 15)
+    private CustomerStatus customerStatus;
 }

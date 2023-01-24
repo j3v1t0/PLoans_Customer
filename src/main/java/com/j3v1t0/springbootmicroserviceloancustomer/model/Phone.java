@@ -17,7 +17,8 @@ import java.util.UUID;
 public class Phone {
 
     @Id
-    private String phoneId;
+    @GeneratedValue(strategy = GenerationType.UUID)
+    private String phoneUuid;
     @Enumerated(EnumType.STRING)
     private PhoneLabel phoneLabel;
     @Column(name = "number")
@@ -27,8 +28,4 @@ public class Phone {
     @Column(name = "country_code")
     private String countryCode;
 
-    public String getPhoneId() {
-        var phoneId = UUID.randomUUID().toString();
-        return phoneId;
-    }
 }

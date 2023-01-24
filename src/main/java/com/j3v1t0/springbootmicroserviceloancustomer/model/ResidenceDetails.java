@@ -17,7 +17,8 @@ import java.util.UUID;
 public class ResidenceDetails {
 
     @Id
-    private String residenceId;
+    @GeneratedValue(strategy = GenerationType.UUID)
+    private String residenceUuid;
     @Enumerated(EnumType.STRING)
     @Column(name = "ownership_status")
     private OwnershipStatus ownershipStatus;
@@ -31,11 +32,5 @@ public class ResidenceDetails {
     private String buildingName;
     @Column(name = "apartment_number")
     private String apartmentNumber;
-    @OneToOne(mappedBy = "residenceDetails")
-    private Customer customer;
 
-    public String getResidenceId() {
-        var residenceId = UUID.randomUUID().toString();
-        return residenceId;
-    }
 }

@@ -21,8 +21,8 @@ public class CustomerServiceImpl implements CustomerService{
 
         var customerId = UUID.randomUUID().toString();
 
-        customerDto.getCustomer().setUuid(customerId);
-        customerDto.getCustomer().setFechaCreacion(LocalDateTime.now());
+        customerDto.getCustomer().setCustomerUuid(customerId);
+        customerDto.getCustomer().setDateCreated(LocalDateTime.now());
 
         Customer customerCreated = customerRepository.save(customerDto.getCustomer());
 
