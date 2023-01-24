@@ -26,6 +26,8 @@ public class Customer {
     @Enumerated(EnumType.STRING)
     @Column(name = "identification_type", nullable = false, length = 15)
     private IdentificationType identificationType;
+    @Column(name = "identification", nullable = false)
+    private String identification;
     @Enumerated(EnumType.STRING)
     @Column(name = "sex", nullable = false, length = 8)
     private Sex sex;

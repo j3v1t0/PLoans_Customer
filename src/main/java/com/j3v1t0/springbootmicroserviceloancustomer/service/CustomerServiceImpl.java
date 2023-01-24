@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.Optional;
 import java.util.UUID;
 
 @Service
@@ -15,6 +16,7 @@ public class CustomerServiceImpl implements CustomerService{
     @Autowired
     private CustomerRepository customerRepository;
 
+    @Override
     public Customer saveCustomer(CustomerDto customerDto){
 
         var customerId = UUID.randomUUID().toString();
@@ -26,5 +28,10 @@ public class CustomerServiceImpl implements CustomerService{
 
         return customerCreated;
 
+    }
+
+    @Override
+    public Optional<Customer> findByIdentification(String identification){
+        return customerRepository.findByIdentification(identification);
     }
 }
