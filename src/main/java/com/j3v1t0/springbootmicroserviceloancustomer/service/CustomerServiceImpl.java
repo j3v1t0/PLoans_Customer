@@ -35,9 +35,10 @@ public class CustomerServiceImpl implements CustomerService{
 
         Long findMaxCustomerReference = customerRepository.findByMaxCustomerReference(customerDto.getCustomer().getCustomerReference());
 
+        Long maxCustomerReferencePlusOne = findMaxCustomerReference + 1;
         String thisYear = String.valueOf((long) Year.now().getValue());
 
-        String maxCustomerReference = String.valueOf(findMaxCustomerReference);
+        String maxCustomerReference = String.valueOf(maxCustomerReferencePlusOne).substring(4);
 
         String concatYearAndMaxCustomerReference = thisYear.concat(maxCustomerReference);
 
