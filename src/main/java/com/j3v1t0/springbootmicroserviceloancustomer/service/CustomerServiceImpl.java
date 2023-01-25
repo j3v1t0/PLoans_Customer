@@ -35,20 +35,35 @@ public class CustomerServiceImpl implements CustomerService{
 
         Long findMaxCustomerReference = customerRepository.findByMaxCustomerReference(customerDto.getCustomer().getCustomerReference());
 
-        Long maxCustomerReferencePlusOne = findMaxCustomerReference + 1;
-        String thisYear = String.valueOf((long) Year.now().getValue());
+        if (findMaxCustomerReference == 0) {
+            Long maxCustomerReferencePlusOne = findMaxCustomerReference + 1;
+            String maxCustomerReference = String.valueOf(maxCustomerReferencePlusOne);
 
-        String maxCustomerReference = String.valueOf(maxCustomerReferencePlusOne).substring(4);
+            String thisYear = String.valueOf((long) Year.now().getValue());
 
-        String concatYearAndMaxCustomerReference = thisYear.concat(maxCustomerReference);
+            String concatYearAndMaxCustomerReference = thisYear.concat(maxCustomerReference);
 
-        customerDto.getCustomer().setCustomerUuid(customerId);
-        customerDto.getCustomer().setDateCreated(LocalDateTime.now());
-        customerDto.getCustomer().setCustomerReference(Long.valueOf(concatYearAndMaxCustomerReference));
+            customerDto.getCustomer().setCustomerUuid(customerId);
+            customerDto.getCustomer().setDateCreated(LocalDateTime.now());
+            customerDto.getCustomer().setCustomerReference(Long.valueOf(concatYearAndMaxCustomerReference));
 
-        Customer customerCreated = customerRepository.save(customerDto.getCustomer());
+            Customer customerCreated = customerRepository.save(customerDto.getCustomer());
+            return customerCreated;
+        }else {
+            Long maxCustomerReferencePlusOne = findMaxCustomerReference + 1;
+            String maxCustomerReference = String.valueOf(maxCustomerReferencePlusOne).substring(4);
 
-        return customerCreated;
+            String thisYear = String.valueOf((long) Year.now().getValue());
+
+            String concatYearAndMaxCustomerReference = thisYear.concat(maxCustomerReference);
+
+            customerDto.getCustomer().setCustomerUuid(customerId);
+            customerDto.getCustomer().setDateCreated(LocalDateTime.now());
+            customerDto.getCustomer().setCustomerReference(Long.valueOf(concatYearAndMaxCustomerReference));
+
+            Customer customerCreated = customerRepository.save(customerDto.getCustomer());
+            return customerCreated;
+        }
 
     }
 
