@@ -1,6 +1,7 @@
 package com.j3v1t0.springbootmicroserviceloancustomer.model;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Email;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -19,10 +20,8 @@ public class Customer {
 
     @Id
     private String customerUuid;
-
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "customerReferenceUuid")
-    private Customer_Reference customerReference;
+    @Column(name = "customer_reference", nullable = false)
+    private Long customerReference;
     @Column(name = "customer_name", nullable = false, length = 100)
     private String customerName;
     @Column(name = "customer_lastname", nullable = false, length = 100)
@@ -32,6 +31,9 @@ public class Customer {
     private IdentificationType identificationType;
     @Column(name = "identification", nullable = false)
     private String identification;
+    @Column(name = "email")
+    @Email(message = "Please enter a Valid email!")
+    private String email;
     @Enumerated(EnumType.STRING)
     @Column(name = "sex", nullable = false, length = 8)
     private Sex sex;

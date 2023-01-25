@@ -12,4 +12,5 @@ import lombok.ToString;
 @ToString
 public class CustomerDto {
     private Customer customer;
+
 }
