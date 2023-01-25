@@ -4,14 +4,11 @@ import com.j3v1t0.springbootmicroserviceloancustomer.dto.CustomerDto;
 import com.j3v1t0.springbootmicroserviceloancustomer.model.Customer;
 import com.j3v1t0.springbootmicroserviceloancustomer.model.CustomerStatus;
 import com.j3v1t0.springbootmicroserviceloancustomer.service.CustomerService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
-
-import java.text.MessageFormat;
-import java.util.logging.Level;
 import java.util.logging.Logger;
 
 @RestController
@@ -37,6 +34,11 @@ public class CustomerController {
         return new ResponseEntity<>(customerService.saveCustomer(customerDto), HttpStatus.CREATED);
 
 
+    }
+
+    @PutMapping("update/{customerUuid}")
+    public ResponseEntity<?> updateCustomer(@PathVariable String customerUuid, @RequestBody CustomerDto customer){
+        return new ResponseEntity<>(customerService.updateCustomer(customer, customerUuid), HttpStatus.CREATED);
     }
 
     @GetMapping("findallcustomerlist")

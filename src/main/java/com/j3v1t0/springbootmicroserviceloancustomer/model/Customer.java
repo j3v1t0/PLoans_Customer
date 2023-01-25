@@ -49,7 +49,10 @@ public class Customer {
 
     @Column(name = "date_created", nullable = false)
     private LocalDateTime dateCreated;
+    @Column(name = "date_updated")
+    private LocalDateTime dateUpdated;
     @Enumerated(EnumType.STRING)
     @Column(name = "customer_status", nullable = false, length = 15)
     private CustomerStatus customerStatus;
+
 }
