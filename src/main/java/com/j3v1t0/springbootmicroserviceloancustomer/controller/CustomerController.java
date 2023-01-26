@@ -21,7 +21,7 @@ public class CustomerController {
 
 
         if(customerService.findByEmail(customerDto.getCustomer().getEmail()).isPresent()){
-            return new ResponseEntity<>("Correo ya registrado", HttpStatus.CONFLICT);
+            return new ResponseEntity<>("Email is already registered!", HttpStatus.CONFLICT);
         }
 
         if (customerService.findByIdentification(customerDto.getCustomer().getIdentification()).isPresent()) {
