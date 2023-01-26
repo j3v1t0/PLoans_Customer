@@ -31,7 +31,7 @@ public class CustomerServiceImpl implements CustomerService{
     @Override
     public Customer saveCustomer(CustomerDto customerDto){
 
-        var customerId = UUID.randomUUID().toString();
+        var customerUuid = UUID.randomUUID().toString();
 
         Long findMaxCustomerReference = customerRepository.findByMaxCustomerReference(customerDto.getCustomer().getCustomerReference());
 
@@ -43,7 +43,7 @@ public class CustomerServiceImpl implements CustomerService{
 
             String concatYearAndMaxCustomerReference = thisYear.concat(maxCustomerReference);
 
-            customerDto.getCustomer().setCustomerUuid(customerId);
+            customerDto.getCustomer().setCustomerUuid(customerUuid);
             customerDto.getCustomer().setDateCreated(LocalDateTime.now());
             customerDto.getCustomer().setCustomerReference(Long.valueOf(concatYearAndMaxCustomerReference));
 
@@ -57,7 +57,7 @@ public class CustomerServiceImpl implements CustomerService{
 
             String concatYearAndMaxCustomerReference = thisYear.concat(maxCustomerReference);
 
-            customerDto.getCustomer().setCustomerUuid(customerId);
+            customerDto.getCustomer().setCustomerUuid(customerUuid);
             customerDto.getCustomer().setDateCreated(LocalDateTime.now());
             customerDto.getCustomer().setCustomerReference(Long.valueOf(concatYearAndMaxCustomerReference));
 
