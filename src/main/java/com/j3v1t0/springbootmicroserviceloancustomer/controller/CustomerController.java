@@ -4,18 +4,15 @@ import com.j3v1t0.springbootmicroserviceloancustomer.dto.CustomerDto;
 import com.j3v1t0.springbootmicroserviceloancustomer.model.Customer;
 import com.j3v1t0.springbootmicroserviceloancustomer.model.CustomerStatus;
 import com.j3v1t0.springbootmicroserviceloancustomer.service.CustomerService;
-import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import java.util.logging.Logger;
 
 @RestController
 @RequestMapping("api/customer")
 public class CustomerController {
 
-    private final Logger logger = Logger.getLogger(CustomerController.class.getName());
     @Autowired
     private CustomerService customerService;
 
