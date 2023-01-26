@@ -29,7 +29,7 @@ public class Customer {
     @Enumerated(EnumType.STRING)
     @Column(name = "identification_type", nullable = false, length = 15)
     private IdentificationType identificationType;
-    @Column(name = "identification", nullable = false)
+    @Column(name = "identification", nullable = false, unique = true)
     private String identification;
     @Column(name = "email")
     @Email(message = "Please enter a Valid email!")
